@@ -1,13 +1,13 @@
 import React from 'react';
-import {connect, useDispatch} from 'react-redux';
+import {connect} from 'react-redux';
 import CurrencyExchange from '../../components/CurrencyExchange/CurrencyExchange';
 import { IGlobalState } from '../../redux/state';
 import { CurrencyState } from '../../redux/currencyReducer';
-import { compose, Dispatch } from 'redux';
+import { compose} from 'redux';
 import {
   ChangeActionAC,
   ChangeCurrencyFieldAC,
-  changeCurrentCurrencyAC,
+  changeCurrentCurrencyAC, useDispatch,
 } from '../../redux/actions';
 
 
@@ -19,7 +19,7 @@ const CurrencyEContainer: React.FunctionComponent<CurrencyState> = ({
   amountOfCurrency,
 }) => {
 
-  let dispath = useDispatch()
+  let dispatch = useDispatch()
 
   let currencyRate: number = 0;
   const currenciesName = currencies.map((currency) => {
@@ -36,25 +36,25 @@ const CurrencyEContainer: React.FunctionComponent<CurrencyState> = ({
       const trigger: string = e.currentTarget.dataset.currency;
       if (trigger === 'byn') {
         if (value === '') {
-          dispath(ChangeCurrencyFieldAC(value, value));
+          dispatch(ChangeCurrencyFieldAC(value, value));
         } else {
-          dispath(ChangeCurrencyFieldAC(value, (+Number(value).toFixed(2) / currencyRate).toFixed(2)));
+          dispatch(ChangeCurrencyFieldAC(value, (+Number(value).toFixed(2) / currencyRate).toFixed(2)));
         }
       } else {
         if (value === '') {
-          dispath(ChangeCurrencyFieldAC(value, value));
+          dispatch(ChangeCurrencyFieldAC(value, value));
         } else {
-          dispath(ChangeCurrencyFieldAC((+Number(value).toFixed(2) * currencyRate).toFixed(2), value));
+          dispatch(ChangeCurrencyFieldAC((+Number(value).toFixed(2) * currencyRate).toFixed(2), value));
         }
       }
     }
   };
   const changeAction = (e: React.MouseEvent<HTMLSpanElement>) => {
-    e.currentTarget.dataset.action === 'buy' ? dispath(ChangeActionAC(true)) : dispath(ChangeActionAC(false));
+    e.currentTarget.dataset.action === 'buy' ? dispatch(ChangeActionAC(true)) : dispatch(ChangeActionAC(false));
   };
 
   const changeCurrentCurrency = (e: React.MouseEvent<HTMLLIElement>) => {
-    e.currentTarget.dataset.currency && dispath(changeCurrentCurrencyAC(e.currentTarget.dataset.currency));
+    e.currentTarget.dataset.currency && dispatch(changeCurrentCurrencyAC(e.currentTarget.dataset.currency));
   };
 
   return (

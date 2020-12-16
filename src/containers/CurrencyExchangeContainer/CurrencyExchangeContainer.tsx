@@ -1,21 +1,25 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import {useSelector} from 'react-redux';
 import CurrencyExchange from '../../components/CurrencyExchange/CurrencyExchange';
-import {IGlobalState} from '../../redux/state';
-import {CurrencyState} from '../../redux/currencyReducer';
-import {compose} from 'redux';
 import {ACTIONS_TYPE, useDispatch,} from '../../redux/actions';
+import {
+    selectAmountOfBYN,
+    selectAmountOfCurrency,
+    selectCurrencies,
+    selectIsBuying,
+    selectUrrentCurrency
+} from "../../redux/selectors";
 
 
-const CurrencyEContainer: React.FunctionComponent<CurrencyState> = ({
-                                                                        currencies,
-                                                                        currentCurrency,
-                                                                        isBuying,
-                                                                        amountOfBYN,
-                                                                        amountOfCurrency,
-                                                                    }) => {
+const CurrencyEContainer: React.FunctionComponent = () => {
 
     let dispatch = useDispatch()
+
+    const currencies = useSelector(selectCurrencies)
+    const currentCurrency = useSelector(selectUrrentCurrency)
+    const isBuying = useSelector(selectIsBuying)
+    const amountOfBYN = useSelector(selectAmountOfBYN)
+    const amountOfCurrency = useSelector(selectAmountOfCurrency)
 
     let currencyRate: number = 0;
     const currenciesName = currencies.map((currency) => {
@@ -70,11 +74,17 @@ const CurrencyEContainer: React.FunctionComponent<CurrencyState> = ({
         }
     };
     const changeAction = (e: React.MouseEvent<HTMLSpanElement>) => {
-        e.currentTarget.dataset.action === 'buy' ? dispatch({type: ACTIONS_TYPE.CHANGE_CHANGE_ACTION, payload: {isBuying: true}}) : dispatch({type: ACTIONS_TYPE.CHANGE_CHANGE_ACTION, payload: {isBuying: false}});
+        e.currentTarget.dataset.action === 'buy' ? dispatch({
+            type: ACTIONS_TYPE.CHANGE_CHANGE_ACTION,
+            payload: {isBuying: true}
+        }) : dispatch({type: ACTIONS_TYPE.CHANGE_CHANGE_ACTION, payload: {isBuying: false}});
     };
 
     const changeCurrentCurrency = (e: React.MouseEvent<HTMLLIElement>) => {
-        e.currentTarget.dataset.currency && dispatch({type: ACTIONS_TYPE.CHANGE_CURRENT_CURRENCY, payload: {currentCurrency: e.currentTarget.dataset.currency}});
+        e.currentTarget.dataset.currency && dispatch({
+            type: ACTIONS_TYPE.CHANGE_CURRENT_CURRENCY,
+            payload: {currentCurrency: e.currentTarget.dataset.currency}
+        });
     };
 
     return (
@@ -94,15 +104,6 @@ const CurrencyEContainer: React.FunctionComponent<CurrencyState> = ({
     );
 };
 
-const mapStateToProps = (state: IGlobalState) => {
-    return {
-        currencies: state.currency.currencies,
-        currentCurrency: state.currency.currentCurrency,
-        isBuying: state.currency.isBuying,
-        amountOfBYN: state.currency.amountOfBYN,
-        amountOfCurrency: state.currency.amountOfCurrency,
-    };
-};
 
 
-export const CurrencyExchangeContainer = compose(connect(mapStateToProps, {}))(CurrencyEContainer);
+export default CurrencyEContainer

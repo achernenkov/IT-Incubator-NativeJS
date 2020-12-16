@@ -31,13 +31,13 @@ export const ChangeActionAC = (isBuying: boolean): ChangeAction => {
 
 export type ChangeCurrentCurrencyType = {
     type: ACTIONS_TYPE.CHANGE_CURRENT_CURRENCY
-    preload: {
+    payload: {
         currentCurrency: string
     }
 };
 
 export const changeCurrentCurrencyAC = (currentCurrency: string): ChangeCurrentCurrencyType => {
-    return {type: ACTIONS_TYPE.CHANGE_CURRENT_CURRENCY, preload: {currentCurrency}}
+    return {type: ACTIONS_TYPE.CHANGE_CURRENT_CURRENCY, payload: {currentCurrency}}
 };
 
 export type CurrencyReducersTypes = ChangeCurrencyFieldType | ChangeAction | ChangeCurrentCurrencyType;

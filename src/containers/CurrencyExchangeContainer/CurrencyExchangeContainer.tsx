@@ -2,24 +2,14 @@ import React from 'react';
 import {useSelector} from 'react-redux';
 import CurrencyExchange from '../../components/CurrencyExchange/CurrencyExchange';
 import {ACTIONS_TYPE, useDispatch,} from '../../redux/actions';
-import {
-    selectAmountOfBYN,
-    selectAmountOfCurrency,
-    selectCurrencies,
-    selectIsBuying,
-    selectUrrentCurrency
-} from "../../redux/selectors";
+import {selectState} from "../../redux/selectors";
 
 
 const CurrencyEContainer: React.FunctionComponent = () => {
 
     let dispatch = useDispatch()
 
-    const currencies = useSelector(selectCurrencies)
-    const currentCurrency = useSelector(selectUrrentCurrency)
-    const isBuying = useSelector(selectIsBuying)
-    const amountOfBYN = useSelector(selectAmountOfBYN)
-    const amountOfCurrency = useSelector(selectAmountOfCurrency)
+    const {currencies, currentCurrency, isBuying, amountOfBYN, amountOfCurrency} = useSelector(selectState)
 
     let currencyRate: number = 0;
     const currenciesName = currencies.map((currency) => {

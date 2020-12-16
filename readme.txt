@@ -1,5 +1,5 @@
 1) Починить. +
-2) Без CallBack AC.
+2) Без CallBack AC. +
 3) UseDispatch
 4) Костыль сделать.
 4) Без AC.

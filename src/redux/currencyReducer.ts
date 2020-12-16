@@ -9,8 +9,8 @@ export type CurrencyState = {
   currencies: Array<CurrencyType>;
   currentCurrency: string;
   isBuying: boolean;
-  amountOfBYN: string;
-  amountOfCurrency: string;
+  amountOfBYN: number;
+  amountOfCurrency: number;
 };
 
 const initialState: CurrencyState = {
@@ -33,18 +33,19 @@ const initialState: CurrencyState = {
   ],
   currentCurrency: 'USD',
   isBuying: true,
-  amountOfBYN: '',
-  amountOfCurrency: '',
+  amountOfBYN: 0.0,
+  amountOfCurrency: 0.0,
 };
 
 export const currencyReducer = (state: CurrencyState = initialState, action: CurrencyReducersTypes): CurrencyState => {
+  debugger
   switch (action.type) {
     case ACTIONS_TYPE.CHANGE_CURRENCY_FIELD_TYPE:
       return {...state, ...action.payload}
     case ACTIONS_TYPE.CHANGE_CHANGE_ACTION:
-      return {...state, ...action.payload, amountOfCurrency: '', amountOfBYN: ''}
+      return {...state, ...action.payload, amountOfCurrency: 0, amountOfBYN: 0}
     case ACTIONS_TYPE.CHANGE_CURRENT_CURRENCY:
-      return {...state, ...action.payload, amountOfCurrency: '', amountOfBYN: ''}
+      return {...state, ...action.payload, amountOfCurrency: 0, amountOfBYN: 0}
     default:
       return state;
   }

@@ -20,12 +20,12 @@ const CurrencyEContainer: React.FunctionComponent = () => {
     });
 
     const changeCurrencyField = (e: React.ChangeEvent<HTMLInputElement>) => {
-        let value = e.currentTarget.value;
-        if (!isFinite(+value)) return;
+        let value = Number(e.currentTarget.value);
+        if (!isFinite(value)) return;
         if (e.currentTarget.dataset.currency) {
             const trigger: string = e.currentTarget.dataset.currency;
             if (trigger === 'byn') {
-                if (value === '') {
+                if (value === 0) {
                     dispatch({
                         type: ACTIONS_TYPE.CHANGE_CURRENCY_FIELD_TYPE,
                         payload: {amountOfBYN: value, amountOfCurrency: value}
@@ -36,13 +36,13 @@ const CurrencyEContainer: React.FunctionComponent = () => {
                             type: ACTIONS_TYPE.CHANGE_CURRENCY_FIELD_TYPE,
                             payload: {
                                 amountOfBYN: value,
-                                amountOfCurrency: (+Number(value).toFixed(2) / currencyRate).toFixed(2)
+                                amountOfCurrency: Number((value / currencyRate).toFixed(2))
                             }
                         }
                     )
                 }
             } else {
-                if (value === '') {
+                if (value === 0) {
                     dispatch(
                         {
                             type: ACTIONS_TYPE.CHANGE_CURRENCY_FIELD_TYPE,
@@ -54,7 +54,7 @@ const CurrencyEContainer: React.FunctionComponent = () => {
                         {
                             type: ACTIONS_TYPE.CHANGE_CURRENCY_FIELD_TYPE,
                             payload: {
-                                amountOfBYN: (+Number(value).toFixed(2) * currencyRate).toFixed(2),
+                                amountOfBYN: Number((value * currencyRate).toFixed(2)),
                                 amountOfCurrency: value
                             }
                         }

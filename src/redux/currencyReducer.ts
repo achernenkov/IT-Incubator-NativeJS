@@ -33,8 +33,8 @@ const initialState: CurrencyState = {
   ],
   currentCurrency: 'USD',
   isBuying: true,
-  amountOfBYN: 0.0,
-  amountOfCurrency: 0.0,
+  amountOfBYN: NaN,
+  amountOfCurrency: NaN,
 };
 
 export const currencyReducer = (state: CurrencyState = initialState, action: CurrencyReducersTypes): CurrencyState => {
@@ -43,9 +43,9 @@ export const currencyReducer = (state: CurrencyState = initialState, action: Cur
     case ACTIONS_TYPE.CHANGE_CURRENCY_FIELD_TYPE:
       return {...state, ...action.payload}
     case ACTIONS_TYPE.CHANGE_CHANGE_ACTION:
-      return {...state, ...action.payload, amountOfCurrency: 0, amountOfBYN: 0}
+      return {...state, ...action.payload, amountOfCurrency: NaN, amountOfBYN: NaN}
     case ACTIONS_TYPE.CHANGE_CURRENT_CURRENCY:
-      return {...state, ...action.payload, amountOfCurrency: 0, amountOfBYN: 0}
+      return {...state, ...action.payload, amountOfCurrency: NaN, amountOfBYN: NaN}
     default:
       return state;
   }

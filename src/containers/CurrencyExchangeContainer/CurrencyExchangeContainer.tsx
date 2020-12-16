@@ -20,15 +20,17 @@ const CurrencyEContainer: React.FunctionComponent = () => {
     });
 
     const changeCurrencyField = (e: React.ChangeEvent<HTMLInputElement>) => {
-        let value = Number(e.currentTarget.value);
-        if (!isFinite(value)) return;
+        let value = NaN
+        if(+e.currentTarget.value !== NaN) {
+            value = Number(e.currentTarget.value)
+        }
         if (e.currentTarget.dataset.currency) {
             const trigger: string = e.currentTarget.dataset.currency;
             if (trigger === 'byn') {
-                if (value === 0) {
+                if (value === NaN) {
                     dispatch({
                         type: ACTIONS_TYPE.CHANGE_CURRENCY_FIELD_TYPE,
-                        payload: {amountOfBYN: value, amountOfCurrency: value}
+                        payload: {amountOfBYN: NaN, amountOfCurrency: NaN}
                     });
                 } else {
                     dispatch(
@@ -42,11 +44,11 @@ const CurrencyEContainer: React.FunctionComponent = () => {
                     )
                 }
             } else {
-                if (value === 0) {
+                if (value === NaN) {
                     dispatch(
                         {
                             type: ACTIONS_TYPE.CHANGE_CURRENCY_FIELD_TYPE,
-                            payload: {amountOfBYN: value, amountOfCurrency: value}
+                            payload: {amountOfBYN: NaN, amountOfCurrency: NaN}
                         }
                     );
                 } else {

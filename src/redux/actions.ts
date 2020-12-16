@@ -13,12 +13,7 @@ export type ChangeCurrencyFieldType = {
         amountOfCurrency: string
     }
 };
-export const ChangeCurrencyFieldAC = (amountOfBYN: string, amountOfCurrency: string): ChangeCurrencyFieldType => {
-    return {
-        type: ACTIONS_TYPE.CHANGE_CURRENCY_FIELD_TYPE,
-        payload: {amountOfBYN, amountOfCurrency}
-    }
-};
+
 
 export type ChangeAction = {
     type: ACTIONS_TYPE.CHANGE_CHANGE_ACTION
@@ -27,19 +22,12 @@ export type ChangeAction = {
     }
 };
 
-export const ChangeActionAC = (isBuying: boolean): ChangeAction => {
-    return {type: ACTIONS_TYPE.CHANGE_CHANGE_ACTION, payload: {isBuying}}
-};
 
 export type ChangeCurrentCurrencyType = {
     type: ACTIONS_TYPE.CHANGE_CURRENT_CURRENCY
     payload: {
         currentCurrency: string
     }
-};
-
-export const changeCurrentCurrencyAC = (currentCurrency: string): ChangeCurrentCurrencyType => {
-    return {type: ACTIONS_TYPE.CHANGE_CURRENT_CURRENCY, payload: {currentCurrency}}
 };
 
 export type CurrencyReducersTypes = ChangeCurrencyFieldType | ChangeAction | ChangeCurrentCurrencyType;

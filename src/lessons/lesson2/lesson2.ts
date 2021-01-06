@@ -80,6 +80,26 @@ console.log(counter()); // 3
 // reset: установить счетчик в 0;
 // set: установить счетчик в заданное значение;
 
+function makeCounterTask3 (num:number){
+    let numValue = num
+    return {
+        increase: () => numValue += 1,
+        decrease: () => numValue -= 1,
+        reset: () => numValue = numValue = 0,
+        set: (newNumValue:number) => numValue = newNumValue
+    }
+}
+
+const counter3 = makeCounterTask3(5)
+console.log(counter3.decrease())
+console.log(counter3.decrease())
+console.log(counter3.decrease())
+console.log(counter3.increase())
+console.log(counter3.reset())
+console.log(counter3.set(100))
+console.log(counter3.increase())
+console.log(counter3.increase())
+
 // Task 04*
 // Реализовать функцию superSum которая принимает число в качестве аргумента, которое указывает на количество слагаемых
 // и что бы корректно работали следующие вызовы:

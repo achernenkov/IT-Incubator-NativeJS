@@ -110,6 +110,38 @@ console.log(counter3.increase())
 // 5) superSum(3)(2,5)(3) //10
 // 6) superSum(3)(2,5)(3,9) //10
 
+function superSum(num:number){
+
+    if (num === 0) return 0
+
+    let superSumArgument:Array<number> = []
+
+    let realSuperSum = (...arg: Array<number>) => {
+        superSumArgument = [...superSumArgument, ...arg]
+        if(superSumArgument.length >= num){
+            superSumArgument.length = num
+            return superSumArgument.reduce((el, ac) => el + ac)
+        }else {
+            return realSuperSum
+        }
+    }
+
+    return realSuperSum
+
+}
+
+console.log(superSum(0)) //0
+//@ts-ignore
+console.log(superSum(3)(2)(5)(3)) //10
+//@ts-ignore
+console.log(superSum(3)(2)(5,3)) //10
+//@ts-ignore
+console.log(superSum(3)(2,5,3)) //10
+//@ts-ignore
+console.log(superSum(3)(2,5)(3))//10
+//@ts-ignore
+console.log(superSum(3)(2,5)(3,9)) //10
+
 // P.S. типизируйте только аргументы, а при вызове функции используйте @ts-ignore
 
 // Task 05

@@ -150,3 +150,23 @@ console.log(superSum(3)(2,5)(3,9)) //10
 
 // just a plug
 export default () => {};
+
+// Напишите функцию sumTo(n), которая вычисляет сумму чисел 1 + 2 + ... + n.
+//
+//     Например:
+//
+// sumTo(1) = 1
+// sumTo(2) = 2 + 1 = 3
+// sumTo(3) = 3 + 2 + 1 = 6
+// sumTo(4) = 4 + 3 + 2 + 1 = 10
+// ...
+// sumTo(100) = 100 + 99 + ... + 2 + 1 = 5050
+
+function sumTo(num:number):number{
+    if (num == 0) return 0
+    if (num == 1) return 1
+    return num + sumTo(num - 1)
+}
+
+console.log(sumTo(3))
+console.log(sumTo(100))

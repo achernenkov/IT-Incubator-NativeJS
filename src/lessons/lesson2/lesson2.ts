@@ -30,6 +30,10 @@ let sum = (num:number) => {
     }
 }
 
+let sum3 = (num:number) => (num2:number) => num + num2
+
+console.log(sum3(1)(1))
+
 console.log(sum(3)(6))
 
 let sum2 = (num: number) => {
@@ -52,6 +56,21 @@ console.log(sum2(1)(2)(3)(4))
 // const counter2 = makeCounter();
 // counter2(); // 1
 // counter(); // 3
+
+
+function makeCounter(){
+    let count = 0
+    return function():number {
+        return ++count
+    }
+}
+
+const counter = makeCounter();
+console.log(counter()); // 1
+console.log(counter()); // 2
+const counter2 = makeCounter();
+console.log(counter2()); // 1
+console.log(counter()); // 3
 
 // Task 03
 // Переписать функцию из Task 02 так, что бы она принимала число в качестве аргумента и это число было стартовым значением счетчика

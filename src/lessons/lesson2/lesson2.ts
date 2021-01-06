@@ -151,6 +151,8 @@ console.log(superSum(3)(2,5)(3,9)) //10
 // just a plug
 export default () => {};
 
+// Рекурсия learn js
+
 // Напишите функцию sumTo(n), которая вычисляет сумму чисел 1 + 2 + ... + n.
 //
 //     Например:
@@ -170,3 +172,14 @@ function sumTo(num:number):number{
 
 console.log(sumTo(3))
 console.log(sumTo(100))
+
+// factorial
+
+function factorial(num:number):number{
+    if (num == 0) return  0
+    if (num == 1) return  1
+    return num * factorial(num - 1)
+}
+console.log('factorial')
+console.log(factorial(3))
+console.log(factorial(100))

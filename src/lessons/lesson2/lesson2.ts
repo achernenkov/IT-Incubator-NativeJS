@@ -183,3 +183,17 @@ function factorial(num:number):number{
 console.log('factorial')
 console.log(factorial(3))
 console.log(factorial(100))
+
+// fibonachi
+
+function fib(n:number):number {
+    if(n == 0) return 0
+    if(n == 1) return 1
+
+    return fib(n - 1) + fib(n - 2)
+}
+
+
+alert(fib(3)); // 2
+alert(fib(7)); // 13
+// alert(fib(77)); // 5527939700884757 Долго считает ;(

@@ -197,3 +197,19 @@ function fib(n:number):number {
 alert(fib(3)); // 2
 alert(fib(7)); // 13
 // alert(fib(77)); // 5527939700884757 Долго считает ;(
+
+
+
+/// Замыкание
+
+// Напишите функцию sum, которая работает таким образом: sum(a)(b) = a+b.
+//
+//     Да, именно таким образом, используя двойные круглые скобки (не опечатка).
+//
+// Например:
+
+// function summa(num:number){
+//     return function (num2:number):number{
+//         return num + num2
+//     }
+// }

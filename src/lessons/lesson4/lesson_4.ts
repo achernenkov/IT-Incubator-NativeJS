@@ -160,8 +160,20 @@ p4.then(res => print(onSuccess(res)))
 // второй промис возвращает объект {age: 16} через 3 с, а третий {city: ''} через 4с.
 // Получите результаты работы промисов, объедините свойства объектов
 // и выведите в консоль {name, age, city}
+let obj = {}
 
+let p5:Promise<{name: string}> = new Promise(res => setTimeout(() => res({ name: "Anna" }), 2000))
 
+let p6:Promise<{age: number}> = new Promise(res => setTimeout(() => res({age: 16}), 3000))
+
+let p7: Promise<{city: string}> = new Promise(res => setTimeout(() => res({city: ''}), 4000))
+
+const p8All = Promise.all([p5,p6,p7])
+
+p8All.then(data => {
+    obj = {name: data[0].name, age: data[1].age, city: data[2].city}
+    console.log('Object Task7', obj)
+})
 
 // just a plug
 export default ()=>{};

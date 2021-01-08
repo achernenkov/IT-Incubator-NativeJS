@@ -141,6 +141,20 @@ export const rejectPromiseHandler  = (value: string):void => {if(handlePromise.r
 // Добавьте два метода then и передайте созданные функции.
 
 
+const p4:Promise<string> = new Promise((resolve, rejects) => {
+    setTimeout(() => resolve('My name is'), 1000)
+})
+
+function onSuccess(oneParametr: string):string {
+    return `${oneParametr} Андрей`
+}
+
+function print(value: string):void{
+    console.log(value)
+}
+
+p4.then(res => print(onSuccess(res)))
+
 // Task 7
 // Создайте три промиса. Первый промис возвращает объект { name: "Anna" } через 2с,
 // второй промис возвращает объект {age: 16} через 3 с, а третий {city: ''} через 4с.

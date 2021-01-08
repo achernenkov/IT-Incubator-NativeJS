@@ -33,6 +33,7 @@ const p1 = new Promise(resolve => resolve('Promise Data')).then(console.log)
 // и возвращает строку 'Promise Error'
 // Получите данные промиса и выведите их в консоль
 
+const p2 = new Promise((resolve, reject) => reject('Promise Error')).catch(console.log)
 
 // Task 04
 // Создайте промис, который переходит в состояние resolved через 3с.

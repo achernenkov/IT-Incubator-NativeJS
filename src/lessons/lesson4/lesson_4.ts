@@ -61,6 +61,78 @@ p3.then(console.log)
 // resolve и reject. Следующие два обработчика запускают методы resolve и reject.
 
 
+// type testObjType = {
+//     promise: null | Promise<any>;
+//     resolve: null | Function;
+//     reject: null | Function;
+//     onSuccess: (paramName: string) => void;
+//     onError: (paramName: string) => void;
+// }
+//
+// const handlePromise: testObjType = {
+//     promise: null,
+//     reject: null,
+//     resolve: null,
+//     onSuccess(paramName: string) {
+//         console.log(`Promise is resolved with data: ${paramName}`);
+//     },
+//     onError(paramName: string) {
+//         console.log(`Promise is rejected with error: ${paramName}`);
+//     },
+// };
+//
+// export const createPromise = () => {
+//     const somePromise: Promise<any> = new Promise((res, rej) => {
+//         handlePromise.resolve = res;
+//         handlePromise.reject = rej;
+//     });
+//     handlePromise.promise = somePromise;
+//     handlePromise.promise
+//         .then(res => handlePromise.onSuccess(res))
+//         .catch(err => handlePromise.onError(err));
+//     console.log(handlePromise);
+// };
+//
+// export const resolvePromise = () => {
+//     //handlePromise.resolve && handlePromise.resolve('10');
+//     //@ts-ignore
+//     handlePromise.resolve('10');
+// };
+//
+// export const rejectPromise = () => {
+//     handlePromise.reject && handlePromise.reject('0');
+// };
+
+type HandlePromiseType = {
+    promise: null | Promise<any>
+    resolve: null | Function
+    reject: null | Function
+    onSuccess: (onSuccesSparamName: string) => void
+    onError: (onErrorParamName: string) => void
+}
+
+let handlePromise:HandlePromiseType = {
+    promise: null,
+    resolve: null,
+    reject: null,
+    onSuccess: (onSuccesSparamName: string):void => {
+        console.log(`Promise is resolved with data: ${onSuccesSparamName}`)
+    },
+    onError: (onErrorParamName: string):void => {
+        console.log(`Promise is rejected with error: ${onErrorParamName}`)
+    }
+}
+
+
+export const createPromise = ():void => {
+    handlePromise.promise = new Promise((resolve, reject) => {})
+    handlePromise.resolve = handlePromise.onSuccess
+    handlePromise.reject = handlePromise.onError
+    console.log('createPromiseClick', handlePromise)
+}
+export const resolvePromiseHandler  = (value: string):void => {if(handlePromise.resolve) handlePromise.resolve(value); console.log('resolvePromiseClick', handlePromise)}
+export const rejectPromiseHandler  = (value: string):void => {if(handlePromise.reject) handlePromise.reject(value); console.log('rejectPromiseClick', handlePromise)}
+
 // Task 06
 // Создайте промис, который через 1 с возвращает строку "My name is".
 // Создайте функцию onSuccess, которая получает один параметр,

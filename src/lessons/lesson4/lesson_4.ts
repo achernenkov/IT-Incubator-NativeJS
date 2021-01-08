@@ -25,6 +25,9 @@ p.then(() => console.log('But not completed :('))
 // Получите данные промиса и выведите их в консоль
 
 
+const p1 = new Promise(resolve => resolve('Promise Data')).then(console.log)
+
+
 // Task 03
 // Создайте промис, который после создания сразу же переходит в состояние rejected
 // и возвращает строку 'Promise Error'

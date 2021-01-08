@@ -41,6 +41,11 @@ const p2 = new Promise((resolve, reject) => reject('Promise Error')).catch(conso
 // и возвращает строку 'Promise Data'
 // Получите данные промиса и выведите их в консоль
 
+const p3 = new Promise((resolve, rejects) => {
+    setTimeout(() => resolve('Promise Data'), 3000)
+})
+
+p3.then(console.log)
 
 // Task 05
 // Создайте литерал объекта handlePromise со следующими свойствами:

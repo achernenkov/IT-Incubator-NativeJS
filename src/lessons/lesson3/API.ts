@@ -9,12 +9,17 @@ const axiosInstance = axios.create(configOMB);
 
 const API = {
     searchFilmsByTitle: (title: string) => {
-        return axiosInstance.get(`?t=${title}&apikey=${key}`).then(respons => {
-            const data = JSON.stringify(respons.data);
-            return data
+        return axiosInstance.get(`?s=${title}&apikey=${key}`).then(respons => {
+            console.log(respons)
+            const dataSearchByName = JSON.stringify(respons.data);
+            return dataSearchByName
         })
     },
     searchFilmsByType: (title: string, type: string) => {
+        return axiosInstance.get(`?s=${title}&type=${type}&apikey=${key}`).then(respons => {
+            const dataSearchByType = JSON.stringify(respons.data);
+            return dataSearchByType
+        })
     }
 };
 

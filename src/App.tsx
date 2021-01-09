@@ -10,8 +10,8 @@ function App() {
     <div className="container">
       {/*<Lesson1 />*/}
       <Lesson3 />
-      <div style={{borderTop: '1px solid red', width: '100%', height: '5px', marginTop: '10px'}}/>
-      <Lesson4 />
+      {/*<div style={{borderTop: '1px solid red', width: '100%', height: '5px', marginTop: '10px'}}/>*/}
+      {/*<Lesson4 />*/}
     </div>
   );
 }
